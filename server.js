@@ -53,8 +53,9 @@ app.get('/:node',function(req,res){
 
 //Recieve image data in JSON Format
 app.post('/imageData', function(req, res) {
-  if (!req.body)
-    return res.sendStatus(400);
+  console.log(req.body);
+
+  if (!req.body) res.send("error for posting image data!");
   var date2 = Date.now();
   userDataRef.child("user").child(date2).set(req.body).then(function(){return userDataRef.child("user").child(date2).once('value');}).then(function(snapshot) {
     console.log(snapshot.val());
